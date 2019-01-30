@@ -17,12 +17,11 @@ def matrix_script(n, m, matrix):
     
     while i < len(matrix_unwrap):
         while not matrix_unwrap[i].isalnum() and not re.match(regex_nonchar_end, matrix_unwrap[i:]):
-            i += 1
+            i += len(re.match(regex_nonchar, matrix_unwrap[i:]).group())
         while matrix_unwrap[i].isalnum():
             i += len(re.match(regex_char, matrix_unwrap[i:]).group())
         while not re.match(regex_nonchar_end, matrix_unwrap[i:]):
-            matrix_unwrap1 = matrix_unwrap.replace(re.match(regex_nonchar, matrix_unwrap[i:]).group(), " ", 1)
-            matrix_unwrap = matrix_unwrap1
+            matrix_unwrap = matrix_unwrap.replace(re.match(regex_nonchar, matrix_unwrap[i:]).group(), " ", 1)
             break
         while re.match(regex_nonchar_end, matrix_unwrap[i:]) or re.match(regex_char_end, matrix_unwrap[i:]):
             return (matrix_unwrap)
